@@ -13,6 +13,8 @@ It provides a REST API for a task list web application, handling data management
 
 ```bash
 $ npm install
+
+$ npx prisma generate
 ```
 
 ## Environment variables
