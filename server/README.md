@@ -25,7 +25,7 @@ Then fill in the required values.
 Example variables:
 
 DATABASE_URL — PostgreSQL connection string
-JWT_SECRET — secret key for JWT authentication
+JWT_SECRET — secret key for JWT authentication(any string)
 PORT — server port
 DOMAIN — application domain
 
