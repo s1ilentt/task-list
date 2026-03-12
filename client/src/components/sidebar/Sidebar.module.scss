@@ -1,0 +1,9 @@
+@reference '../../app/globals.css';
+
+.sidebar {
+	@apply hidden py-5 px-3 md:block w-70 fixed left-0 top-0 h-screen bg-sidebar border-r-2 border-border;
+}
+
+.header {
+	@apply mb-10;
+}

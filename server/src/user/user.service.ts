@@ -1,9 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { hash } from 'argon2';
 import { AuthDto } from 'src/auth/dto/auth.dto';
 import { PrismaService } from 'src/prisma.service';
 import { UserDto } from './dto/user.dto';
-import { startOfDay, subDays } from 'date-fns';
 
 @Injectable()
 export class UserService {
@@ -32,55 +31,18 @@ export class UserService {
 		const profile = await this.getById(id);
 
 		if (!profile) {
-			throw new Error('User not found');
+			throw new NotFoundException('User not found');
 		}
-
-		const totalTasks = profile.tasks.length;
-		const completedTasks = await this.prisma.task.count({
-			where: {
-				userId: id,
-				isCompleted: true,
-			},
-		});
-
-		const todayStart = startOfDay(new Date());
-		const weekStart = startOfDay(subDays(new Date(), 7));
-
-		const todayTasks = await this.prisma.task.count({
-			where: {
-				userId: id,
-				createdAt: {
-					gte: todayStart.toISOString(),
-				},
-			},
-		});
-
-		const weekTasks = await this.prisma.task.count({
-			where: {
-				userId: id,
-				createdAt: {
-					gte: weekStart.toISOString(),
-				},
-			},
-		});
 
 		const { password, ...reset } = profile;
 
-		return {
-			user: reset,
-			statistics: [
-				{ label: 'Total', value: totalTasks },
-				{ label: 'Completed tasks', value: completedTasks },
-				{ label: 'Today tasks', value: todayTasks },
-				{ label: 'Week tasks', value: weekTasks },
-			],
-		};
+		return reset;
 	}
 
 	async create(dto: AuthDto) {
 		const user = {
 			email: dto.email,
-			name: '',
+			name: dto.name || '',
 			password: await hash(dto.password),
 		};
 

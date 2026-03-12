@@ -1,0 +1,23 @@
+@reference '../../../../globals.css';
+
+.wrapper {
+	@apply bg-border/80 px-7 py-9 flex gap-x-10 rounded-sm;
+}
+
+.simple-wrapper {
+	@apply bg-border/80 rounded-sm flex justify-center items-center text-4xl font-medium;
+
+	& .number-text {
+		@apply text-5xl text-center mt-3;
+	}
+}
+
+.heading {
+	@apply text-[26px] text-[#4e75bb] mb-2;
+}
+
+.statistic-item {
+	@apply relative pl-9 text-lg not-last:mb-1 before:content-[''] before:absolute before:inline-block
+	  before:left-0 before:top-1/2 before:-translate-y-1/2  before:w-5 before:h-5 before:rounded-full
+	  nth-[1]:before:bg-[#171A30]  nth-[2]:before:bg-[#7f63ce] nth-[3]:before:bg-[#cccccc];
+}

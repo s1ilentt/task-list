@@ -1,0 +1,13 @@
+@reference '../../../globals.css';
+
+.section {
+	@apply py-20;
+}
+
+.heading {
+	@apply text-4xl text-center mt-5 font-medium;
+}
+
+.statistics-blocks {
+	@apply grid grid-cols-3 grid-rows-2 mb-18 gap-y-6 gap-x-10;
+}

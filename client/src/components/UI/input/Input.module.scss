@@ -1,0 +1,27 @@
+@reference '../../../app/globals.css';
+
+.emailInputWrapper {
+	@apply py-1.5 px-2 rounded-lg border border-[#484848] transition-colors duration-100
+	  hover:border-[#7b7b7b] md:py-2 md:px-3;
+
+	&:focus-within {
+		border-color: #b5b5b5;
+	}
+}
+
+.labelIput {
+	@apply pb-1 block cursor-text text-sm text-[#b0b0b0] md:pb-1.5;
+}
+
+.input {
+	@apply block placeholder:text-[#959595] w-full outline-none;
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0) inset;
+		-webkit-text-fill-color: #ededed;
+		transition: background-color 5000s ease-in-out 0s;
+	}
+}

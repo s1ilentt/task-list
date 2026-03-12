@@ -35,7 +35,8 @@ model Task {
 	updatedAt DateTime @updatedAt @map("updated_at")
 
 	name String
-	isCompleted Boolean @default(false) @map("is_copleted")
+	dueDate DateTime @map("due_date")
+	isCompleted Boolean @default(false) @map("is_completed")
 	priority Priority?
 
 	user User @relation(fields: [userId], references: [id])

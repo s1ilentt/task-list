@@ -1,0 +1,12 @@
+@reference '../../app/globals.css';
+
+.circle {
+	@apply origin-center -rotate-90 stroke-[#7f63ce];
+
+	transition: stroke-dashoffset 0.3s ease;
+	stroke-linecap: round;
+}
+
+.text {
+	@apply font-semibold text-3xl fill-[#4e75bb] tracking-wide;
+}

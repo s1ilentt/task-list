@@ -1,0 +1,96 @@
+.schedule-container {
+	background-color: rgba(61, 61, 61, 0.8);
+	padding: 32px 50px 50px;
+	border-radius: 16px;
+	width: 100%;
+
+	:global(.recharts-cartesian-grid-horizontal line) {
+		stroke: rgba(87, 87, 87, 0.8);
+		stroke-width: 2;
+	}
+
+	:global(.recharts-cartesian-axis-tick-value) {
+		fill: #cccccc;
+		font-size: 20px;
+		font-weight: 600;
+	}
+}
+
+.schedule-wrapper {
+	width: 100%;
+
+	:global(.recharts-wrapper) {
+		&,
+		& *,
+		& svg,
+		& rect,
+		& g {
+			outline: none;
+			user-select: none;
+			-webkit-tap-highlight-color: transparent;
+		}
+	}
+
+	:global([class*='recharts-zIndex-layer']) {
+		outline: none;
+	}
+}
+
+.header {
+	margin-bottom: 35px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 28px;
+	font-weight: 600;
+}
+
+.heading-error {
+	text-align: center;
+	font-size: 36px;
+	font-weight: 500;
+	margin-top: 20px;
+}
+
+.buttons {
+	display: flex;
+	column-gap: 32px;
+}
+
+.button {
+	position: relative;
+	padding-left: 45px;
+	cursor: pointer;
+	transition: color 125ms ease;
+
+	&::before {
+		content: '';
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 28px;
+		height: 28px;
+		background-color: transparent;
+		border: 3px solid rgba(0, 0, 0, 0.4);
+		transition:
+			background-color 200ms ease,
+			border-color 200ms ease;
+		border-radius: 50%;
+	}
+
+	&:disabled {
+		cursor: default;
+	}
+
+	&:disabled::before {
+		background-color: #4e75bb;
+		border-color: #4e75bb;
+	}
+
+	&:not(:disabled):hover {
+		@media (min-width: 1024px) {
+			color: #b3b3b3;
+		}
+	}
+}
