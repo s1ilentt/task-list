@@ -1,23 +1,73 @@
 @reference '../../../../globals.css';
 
 .wrapper {
-	@apply bg-border/80 px-7 py-9 flex gap-x-10 rounded-sm;
-}
+	@apply bg-border/80 px-2 pt-4 pb-7 flex flex-col items-center gap-x-5 rounded-sm;
 
-.simple-wrapper {
-	@apply bg-border/80 rounded-sm flex justify-center items-center text-4xl font-medium;
-
-	& .number-text {
-		@apply text-5xl text-center mt-3;
+	@media (min-width: 768px) {
+		@apply flex-row items-stretch px-4 pt-6 pb-10;
+	}
+	@media (min-width: 1280px) {
+		@apply gap-x-7 px-5 pt-7 pb-12;
 	}
 }
 
+.simple-statistic-wrapper {
+	@apply bg-border/80 rounded-sm flex justify-center items-center text-[22px]
+	  font-medium px-3 py-8 md:p-5 md:text-3xl xl:text-4xl;
+
+	& > div {
+		@apply pb-4;
+	}
+
+	& h3 {
+		@apply truncate max-w-30 min-[420px]:max-w-full;
+	}
+
+	& .number-text {
+		@apply text-3xl text-center mt-3 md:mt-4 md:text-[38px] xl:text-5xl xl:mt-5;
+	}
+
+	& .text-with-prefix {
+		@apply flex justify-center items-baseline gap-x-2 md:gap-x-3 [&>*:nth-child(2)]:text-3xl mt-1
+		  [&>*:nth-child(1)]:text-[28px] [&>*:nth-child(1)]:md:text-[34px] [&>*:nth-child(2)]:md:text-[38px]
+			md:mt-2 [&>*:nth-child(2)]:xl:text-5xl [&>*:nth-child(1)]:xl:text-[42px];
+	}
+}
+
+.info {
+	@apply pt-2.5;
+}
+
 .heading {
-	@apply text-[26px] text-[#4e75bb] mb-2;
+	@apply text-xl text-[#4e75bb] hidden mb-2 truncate max-w-45 xl:max-w-55 xl:text-[24px] md:block;
+}
+
+.mobile-heading {
+	@apply text-[#4e75bb] mb-4 truncate max-w-55 text-[22px];
+}
+
+.pomodoro-heading {
+	@media (max-width: 1023.98px) {
+		max-width: 100px;
+		text-overflow: clip;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+}
+
+.pomodoro-mobile-heading {
+	max-width: 110px;
+	text-overflow: clip;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .statistic-item {
-	@apply relative pl-9 text-lg not-last:mb-1 before:content-[''] before:absolute before:inline-block
-	  before:left-0 before:top-1/2 before:-translate-y-1/2  before:w-5 before:h-5 before:rounded-full
+	@apply relative pl-6 text-[14px] not-last:mb-1 before:content-[''] before:absolute before:inline-block
+	  before:left-0 before:top-1/2 before:-translate-y-1/2  before:w-4 before:h-4 before:rounded-full
 	  nth-[1]:before:bg-[#171A30]  nth-[2]:before:bg-[#7f63ce] nth-[3]:before:bg-[#cccccc];
+
+	@media (min-width: 768px) {
+		@apply text-[17px] before:w-5 before:h-5 pl-9;
+	}
 }

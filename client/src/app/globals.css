@@ -12,6 +12,8 @@
 
 	/* === Transition Duration === */
 	--duration-default: 266ms;
+
+	--animate-slide: slide_anim 0.3s;
 }
 
 :root {
@@ -30,10 +32,33 @@
 
 body {
 	@apply text-base font-normal bg-bg;
+
 	min-height: 100vh;
 	width: 100%;
 	color: var(--foreground);
 	font-family: var(--font-noto-sans);
+}
+
+body.overflow-hidden {
+	overflow: hidden;
+}
+
+body.scroll-lock {
+	@media (max-width: 1023.98px) {
+		overflow: hidden;
+	}
+}
+
+main.no-padding {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+
+	@media (min-width: 1024px) {
+		padding-left: 220px !important;
+	}
+	@media (min-width: 1700px) {
+		padding-left: 280px !important;
+	}
 }
 
 input.defaultCheckbox {
@@ -56,18 +81,14 @@ input:checked.defaultCheckbox::before {
 	opacity: 1;
 }
 
-.slide {
-	animation: slide_anim 0.5s;
-}
-
 @keyframes slide_anim {
 	from {
-		transform: translateX(50px);
+		transform: translateY(-30px);
 		opacity: 0.4;
 	}
 
 	to {
-		transform: translateX(0);
+		transform: translateY(0);
 		opacity: 1;
 	}
 }

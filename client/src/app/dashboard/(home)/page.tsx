@@ -11,7 +11,7 @@ export default function HomePage() {
 	return (
 		<div>
 			<Header>Dashboard</Header>
-			<Statistics></Statistics>
+			<Statistics />
 		</div>
 	);
 }

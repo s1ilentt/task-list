@@ -1,0 +1,56 @@
+@reference '../../../globals.css';
+
+.section {
+	@apply h-[calc(100vh-4px-61px-44px)] min-[768px]:h-[calc(100vh-12px-74px-52px)]
+	  min-[1700px]:h-[calc(100vh-12px-97px-52px)];
+}
+
+.switch-week {
+	@apply inline-flex justify-end border border-border rounded-sm;
+
+	> button {
+		@apply cursor-pointer transition-all duration-300;
+	}
+	> button:hover {
+		background-color: #313131;
+	}
+	> button:disabled {
+		user-select: none;
+		opacity: 0.5;
+		cursor: not-allowed;
+		background-color: transparent;
+	}
+}
+
+.days-list {
+	@apply flex gap-x-5 h-[calc(100%-42px)] overflow-auto pl-5.5 pr-4 md:pl-7.5 md:pr-6 cursor-grab
+	  items-start;
+
+	&:active {
+		cursor: grabbing;
+	}
+
+	scrollbar-width: thin;
+	scrollbar-color: transparent transparent;
+	scrollbar-color: #545454 #282828;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: #282828;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #545454;
+		border: 1px solid #282828;
+		border-radius: 10px;
+		background-clip: content-box;
+	}
+
+	> div {
+		@apply flex-[0_0_230px] md:flex-[0_0_302px] cursor-default;
+	}
+}

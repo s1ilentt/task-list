@@ -5,13 +5,15 @@ interface ICircleProgressBar {
 	completedTasks: number;
 	size?: number;
 	strokeWidth?: number;
+	differenceStroke?: number;
 }
 
 export function CircleProgressBar({
 	totalTasks,
 	completedTasks,
-	size = 160,
-	strokeWidth = 15,
+	size = 140,
+	strokeWidth = 12,
+	differenceStroke = 2,
 }: ICircleProgressBar) {
 	const percent = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
 	const radius = (size - strokeWidth) / 2;
@@ -30,7 +32,7 @@ export function CircleProgressBar({
 				cy={center}
 				r={radius}
 				stroke='#cccccc'
-				strokeWidth={strokeWidth - 2}
+				strokeWidth={strokeWidth - differenceStroke}
 				fill='transparent'
 			/>
 			<circle
@@ -52,7 +54,9 @@ export function CircleProgressBar({
 				textAnchor='middle'
 				dominantBaseline='middle'
 			>
-				{`0${completedTasks}/0${totalTasks}`}
+				{`${completedTasks < 10 ? '0' : ''}${completedTasks}/${
+					totalTasks < 10 ? '0' : ''
+				}${totalTasks}`}
 			</text>
 		</svg>
 	);

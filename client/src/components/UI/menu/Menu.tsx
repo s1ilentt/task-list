@@ -1,7 +1,6 @@
 'use client';
 
 import { match } from 'path-to-regexp';
-import styles from './Menu.module.scss';
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import { IMenuItem } from '@/types/menu.interface';
@@ -11,14 +10,20 @@ interface IMenu {
 	menuItems: IMenuItem[];
 	className?: string;
 	isMatch?: boolean;
+	hideFunction?: () => void;
 }
 
-export function Menu({ menuItems, className, isMatch = false }: IMenu) {
+export function Menu({
+	menuItems,
+	className,
+	isMatch = false,
+	hideFunction,
+}: IMenu) {
 	const pathname = usePathname();
 
 	return (
 		<nav>
-			<ul className={clsx(styles.menuList, className)}>
+			<ul className={clsx(className)}>
 				{menuItems.map((menuItem, index) => (
 					<MenuItem
 						key={`${menuItem.href}-${index}`}
@@ -27,6 +32,8 @@ export function Menu({ menuItems, className, isMatch = false }: IMenu) {
 						isActive={
 							isMatch ? !!match(menuItem.href as string)(pathname) : false
 						}
+						icon={menuItem.icon}
+						hideFunction={hideFunction}
 					/>
 				))}
 			</ul>

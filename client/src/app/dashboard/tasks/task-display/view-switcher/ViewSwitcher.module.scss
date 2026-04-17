@@ -1,0 +1,14 @@
+@reference '../../../../globals.css';
+
+.wrapper {
+	@apply flex gap-x-6 py-2.5 md:py-3;
+
+	button {
+		@apply cursor-pointer inline-flex gap-x-1.5 items-center opacity-40 font-light transition-opacity
+			hover:opacity-80 md:text-lg;
+	}
+
+	button.active {
+		opacity: 1;
+	}
+}

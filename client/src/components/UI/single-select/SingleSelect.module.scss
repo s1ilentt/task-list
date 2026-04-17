@@ -1,0 +1,51 @@
+@reference '../../../app/globals.css';
+
+.wrapper {
+	@apply relative px-2 md:px-3;
+
+	&_kanban {
+		padding: 0;
+	}
+}
+
+.button-to-select {
+	@apply flex w-full h-full items-center cursor-pointer;
+
+	&:hover span {
+		opacity: 0.6;
+	}
+
+	&_kanban {
+		@apply inline-flex w-fit;
+	}
+}
+
+.hide-button {
+	@apply hidden absolute top-2 right-3 opacity-50 hover:opacity-100 transition-opacity 
+	  cursor-pointer md:inline-block;
+
+	&_kanban {
+		@apply top-0 left-20;
+	}
+}
+
+.select-list {
+	@apply absolute w-full md:w-[calc(100%-1.5rem)] p-2.5 left-3 top-[calc(100%+.1rem)] animate-slide
+	 bg-sidebar z-10 shadow rounded-lg;
+
+	&_kanban {
+		@apply bg-[#292929] left-0 top-[calc(100%+.3rem)];
+
+		.select-item {
+			@apply py-1.5;
+		}
+	}
+}
+
+.select-item {
+	@apply block py-1.5 first:pt-0 last:pb-0 capitalize rounded-lg cursor-pointer w-full text-left md:py-2;
+
+	&:hover span {
+		opacity: 0.6;
+	}
+}

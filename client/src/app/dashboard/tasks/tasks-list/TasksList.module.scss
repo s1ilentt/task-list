@@ -1,0 +1,5 @@
+@reference '../../../globals.css';
+
+.section {
+	@apply border-t border-border pt-4 pb-8 md:pt-5;
+}

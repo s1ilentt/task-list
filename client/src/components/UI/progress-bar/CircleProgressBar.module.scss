@@ -1,4 +1,4 @@
-@reference '../../app/globals.css';
+@reference '../../../app/globals.css';
 
 .circle {
 	@apply origin-center -rotate-90 stroke-[#7f63ce];
@@ -8,5 +8,5 @@
 }
 
 .text {
-	@apply font-semibold text-3xl fill-[#4e75bb] tracking-wide;
+	@apply font-semibold text-2xl fill-[#4e75bb] tracking-wide md:text-[28px];
 }

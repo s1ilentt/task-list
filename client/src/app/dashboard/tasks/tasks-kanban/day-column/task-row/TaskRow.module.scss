@@ -1,0 +1,66 @@
+@reference '../../../../../globals.css';
+
+.wrapper {
+	@apply relative flex flex-col gap-y-1 h-28 p-2.5 bg-sidebar border border-border hover:bg-sidebar
+	  rounded-xl transition-colors mb-4 last:mb-0 shadow-lg hover:border-[#636363];
+
+	&:hover .grip-button {
+		opacity: 1;
+	}
+
+	&:hover .button-temp {
+		opacity: 0;
+	}
+}
+
+.isCompleted {
+	pointer-events: none;
+}
+
+.completed {
+	opacity: 0.5;
+
+	&:hover .grip-button {
+		opacity: 0;
+	}
+
+	& input {
+		text-decoration: line-through;
+	}
+}
+
+.left-row-items {
+	@apply items-center pr-5 flex gap-x-1.5;
+}
+
+.grip-button {
+	@apply absolute right-2 top-2 cursor-grab opacity-0 transition-opacity;
+
+	&:hover .grip-icon {
+		@apply stroke-[#cacaca];
+	}
+}
+
+.grip-button-active {
+	opacity: 1;
+
+	& .grip-icon {
+		@apply stroke-[#cacaca];
+	}
+}
+
+.grip-icon {
+	@apply stroke-[#5e5e5e] transition-colors duration-120;
+}
+
+.delete-button {
+	@apply absolute right-2.5 bottom-2.5 cursor-pointer;
+
+	&:hover .icon {
+		@apply stroke-[#ffffff];
+	}
+}
+
+.icon {
+	@apply stroke-[#5e5e5e] transition-colors duration-120;
+}

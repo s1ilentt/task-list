@@ -1,0 +1,23 @@
+@reference '../../../../globals.css';
+
+.wrapper {
+	@apply pt-10 relative;
+}
+
+.heading {
+	@apply font-semibold transition-colors pointer-events-none duration-200 select-none
+		w-full h-10 absolute top-0 flex items-center;
+}
+
+.add-task-button {
+	@apply w-full inline-flex gap-x-2 py-3.5 cursor-pointer text-left text-[#808080] transition-colors
+		duration-100 items-center hover:text-[#e26a60];
+
+	&:hover .plus-icon {
+		@apply stroke-white bg-[#e26a60];
+	}
+}
+
+.plus-icon {
+	@apply stroke-[#e26a60] rounded-full transition-colors duration-100;
+}

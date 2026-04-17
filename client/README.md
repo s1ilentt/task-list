@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Description
 
-## Getting Started
+The project is focused on high performance and user experience (UX).
 
-First, run the development server:
+**Main features of the implementation:**
+
+- **Data Management:** Full synchronization with the server via TanStack Query v5.
+  <br/>
+
+- **Interface:** Styling based on Tailwind CSS 4 and Sass.
+  <br/>
+
+- **Drag-and-Drop:** Implemented complex logic for moving elements using dnd-kit and hello-pangea.
+  <br/>
+
+- **Forms:** Client-side validation via React Hook Form.
+  <br/>
+
+- **Графики:** Data visualization using Recharts.
+
+## Сonfiguration
+
+**The project uses this set of tools:**
+
+- **Core:** Next.js 16, React 19, TypeScript 5.
+  <br/>
+
+- **State Management:** @tanstack/react-query (with DevTools).
+  <br/>
+
+- **Styling:** Tailwind CSS 4, Sass, lucide-react (icons), sonner (notifications).
+  <br/>
+
+- **Drag & Drop:** @dnd-kit/core, @hello-pangea/dnd.
+  <br/>
+
+- **Form Handling:** react-hook-form + axios.
+  <br/>
+
+- **Utilities:** dayjs (dates), js-cookie (working with cookies), lodash.debounce.
+
+## Startup Requirements
+
+**For the application to work correctly you will need:**
+
+- **Node.js:** version 20.x or higher.
+  <br/>
+
+- **Package Manager:** npm (version 10+) or pnpm.
+
+## Installation
+
+1\. Cloning a repository:
+
+```bash
+git clone https://github.com/s1ilentt/task-list.git
+cd client
+```
+
+2\. Environment Variables
+
+Create a .env file in the root directory of the client folder:
+
+```bash
+touch .env
+```
+
+Find a detailed description of each variable, their purpose and example values ​​inside the .env.example file. Don't forget to specify the **correct NEXT_PUBLIC_API_URL to communicate with your backend**.
+
+3\. Installing dependencies:
+
+```bash
+npm install
+# or if you are using pnpm
+pnpm install
+```
+
+4\. Starting the application:
+
+**Development mode:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at url: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Сборка для продакшена:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Resources
 
-To learn more about Next.js, take a look at the following resources:
+Official documentation of the tools used:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌐 [Next.js Documentation](https://nextjs.org/docs) - framework and SSR.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📡 [TanStack Query v5](https://tanstack.com/query/latest/docs/framework/react/overview) — server state management.
 
-## Deploy on Vercel
+🎨 [Tailwind CSS v4](https://tailwindcss.com/docs/v4-beta) — styles.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📝 [React Hook Form](https://react-hook-form.com/get-started) — working with forms.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📦 [dnd-kit](https://dndkit.com/) — modern Drag and Drop.
+
+📊 [Recharts](https://www.google.com/search?q=https://recharts.org/en-US/) — drawing graphs.
+
+📅 [Day.js](https://day.js.org/docs/en/installation/installation) — working with dates.
+
+🔔 [Sonner](https://www.google.com/search?q=https://sonner.stevenly.me/) — notifications (Toasts).

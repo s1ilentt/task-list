@@ -8,8 +8,9 @@ export enum ETaskPriority {
 
 export interface ITask extends IBase {
 	name: string;
+	dueDate: string;
 	priority?: ETaskPriority;
-	isCompeted: boolean;
+	isCompleted: boolean;
 }
 
-export type TTaskFormState = Partial<Omit<ITask, 'id' | 'updatedAt'>>;
+export type TTaskFormState = Partial<Omit<ITask, keyof IBase>>;

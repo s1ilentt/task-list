@@ -5,8 +5,8 @@ class TaskService {
 	private baseUrl = 'user/tasks';
 
 	async getAll() {
-		const response = await apiAuth.get<ITask[]>(this.baseUrl);
-		return response;
+		const { data } = await apiAuth.get<ITask[]>(this.baseUrl);
+		return data;
 	}
 
 	async create(data: TTaskFormState) {

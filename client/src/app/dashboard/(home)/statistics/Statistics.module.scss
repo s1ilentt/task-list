@@ -1,13 +1,28 @@
 @reference '../../../globals.css';
 
 .section {
-	@apply py-20;
+	@apply pt-6 pb-10 min-[768px]:pt-8 min-[768px]:pb-12 min-[1700px]:pt-10 min-[1700px]:pb-15;
+}
+
+.loader-wrapper {
+	@apply h-[calc(100vh-65px)] flex items-center justify-center 
+	  min-[768px]:h-[calc(100vh-86px)] min-[1700px]:h-[calc(100vh-109px)];
 }
 
 .heading {
-	@apply text-4xl text-center mt-5 font-medium;
+	@apply text-2xl text-center mt-4 font-medium md:text-4xl md:mt-6;
 }
 
 .statistics-blocks {
-	@apply grid grid-cols-3 grid-rows-2 mb-18 gap-y-6 gap-x-10;
+	@apply grid grid-cols-2 grid-rows-[1fr_1fr_auto] mb-8 gap-5;
+
+	@media (min-width: 768px) {
+		@apply gap-y-6 gap-x-8 mb-12 grid-rows-3;
+	}
+	@media (min-width: 1280px) {
+		@apply gap-y-8 gap-x-16;
+	}
+	@media (min-width: 1700px) {
+		@apply mb-15 gap-x-12 grid-cols-3 grid-rows-2 gap-y-6;
+	}
 }

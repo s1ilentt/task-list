@@ -1,0 +1,27 @@
+.link {
+	&:hover {
+		@media (min-width: 1024px) {
+			background-color: #322f2a;
+		}
+	}
+
+	&.active {
+		@media (min-width: 1024px) {
+			color: #f07f75;
+			background-color: #472525;
+		}
+		@media (max-width: 1023.98px) {
+			color: #7b7b7b;
+			border-bottom: 1px solid rgb(177, 177, 177);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		display: flex;
+		align-items: center;
+		column-gap: 12px;
+		padding: 6px;
+		font-size: 18px;
+		border-radius: 4px;
+	}
+}

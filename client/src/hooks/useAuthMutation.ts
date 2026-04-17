@@ -18,6 +18,9 @@ export function useAuthMutation(
 	const mutation = useMutation({
 		mutationKey: ['auth', mode],
 		mutationFn: (data: IAuthForm) => authService.logAndReg(mode, data),
+		meta: {
+			ignoreGlobalError: true,
+		},
 		onSuccess() {
 			toast.success(
 				mode === 'login'

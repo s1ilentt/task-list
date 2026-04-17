@@ -1,0 +1,90 @@
+.container {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+	width: 22px;
+	height: 22px;
+
+	@media (max-width: 767.98px) {
+		width: 18px;
+		height: 18px;
+	}
+}
+
+.containter_kanban {
+	width: 18px;
+	height: 18px;
+}
+
+.realCheckbox {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.customCheckbox {
+	width: 20px;
+	height: 20px;
+	border: 2px solid #939393;
+	border-radius: 50%;
+	background-color: transparent;
+	transition: opacity 0.2s ease;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		opacity: 0;
+		left: 6px;
+		top: 2px;
+		width: 5px;
+		height: 10px;
+		border: solid #b3b3b3;
+		border-width: 0 2px 2px 0;
+		transform: rotate(45deg);
+		transition: opacity 0.2s ease;
+	}
+
+	@media (max-width: 767.98px) {
+		width: 17px;
+		height: 17px;
+		border: 1px solid #939393;
+
+		&::after {
+			left: 6px;
+			top: 3px;
+			width: 4px;
+			height: 8px;
+			border-width: 0 1px 1px 0;
+		}
+	}
+}
+
+.customCheckbox_kanban {
+	width: 17px;
+	height: 17px;
+	border: 1px solid #939393;
+
+	&::after {
+		left: 6px;
+		top: 3px;
+		width: 4px;
+		height: 8px;
+		border-width: 0 1px 1px 0;
+	}
+}
+
+.container:hover .customCheckbox {
+	opacity: 0.6;
+}
+
+.realCheckbox:checked ~ .customCheckbox::after {
+	opacity: 1;
+}
+
+.realCheckbox:focus-visible ~ .customCheckbox {
+	outline: 2px solid #3b82f6;
+	outline-offset: 2px;
+}

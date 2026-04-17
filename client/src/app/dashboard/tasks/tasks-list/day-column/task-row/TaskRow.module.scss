@@ -1,0 +1,76 @@
+@reference '../../../../../globals.css';
+
+.wrapper {
+	@apply relative flex h-10 [&>*:not(:last-child)]:border-r bg-bg hover:bg-sidebar transition-colors
+   [&>*:not(:last-child)]:border-border border-b border-border focus-within:bg-sidebar md:h-12;
+
+	&:hover .grip-button {
+		opacity: 1;
+	}
+
+	&:hover .button-temp {
+		opacity: 0;
+	}
+}
+
+.isCompleted {
+	pointer-events: none;
+}
+
+.completed {
+	opacity: 0.5;
+
+	&:hover .grip-button {
+		opacity: 0;
+	}
+
+	& input {
+		text-decoration: line-through;
+	}
+}
+
+.left-row-items {
+	@apply items-center pr-2 inline-flex gap-x-1.5 md:pr-4;
+
+	flex: 1 1 100px;
+}
+
+.grip-button {
+	@apply cursor-grab opacity-0 transition-opacity;
+
+	&:hover .grip-icon {
+		@apply stroke-[#cacaca];
+	}
+}
+
+.grip-button-active {
+	opacity: 1;
+
+	& .grip-icon {
+		@apply stroke-[#cacaca];
+	}
+}
+
+.grip-icon {
+	@apply stroke-[#5e5e5e] transition-colors duration-120 h-5 w-5 md:h-6 md:w-6;
+}
+
+.date-picker-wrapper {
+	flex: 0 0 250px;
+
+	@media (max-width: 767.98px) {
+		flex: 0 0 102px;
+	}
+}
+
+.delete-button {
+	@apply px-2 cursor-pointer flex items-center md:px-3;
+
+	&:hover .icon {
+		@apply stroke-[#a04f48];
+	}
+}
+
+.icon {
+	@apply stroke-[#f07f75] transition-colors duration-120 w-5 h-5 md:w-6 md:h-6;
+}

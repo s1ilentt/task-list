@@ -23,3 +23,10 @@ export type TUserForm = Omit<IUser, 'id'> & { password?: string };
 
 export type TAuthMode = 'login' | 'register';
 export type TAuthFormField = 'email' | 'password' | 'name';
+export type TProfileFormField =
+	| 'email'
+	| 'password'
+	| 'name'
+	| 'workInterval'
+	| 'breakInterval'
+	| 'intervalsCount';

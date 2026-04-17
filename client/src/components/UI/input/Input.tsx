@@ -1,7 +1,7 @@
 import { UseFormRegister } from 'react-hook-form';
 import styles from './Input.module.scss';
 import { IAuthForm, type TAuthFormField } from '@/types/auth.interfaces';
-import { getSettingsInput } from '@/utils/getSettingsInput';
+import { getSettingsInput } from '@/utils/get-settings-input';
 
 interface IInputProps {
 	type: TAuthFormField;

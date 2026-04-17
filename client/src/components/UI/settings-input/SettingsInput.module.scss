@@ -1,0 +1,37 @@
+@reference '../../../app/globals.css';
+
+.label {
+	@apply pb-1 block cursor-text text-[13px] md:text-[15px] text-[#b0b0b0] md:pb-1.5;
+
+	@media (max-width: 767.98px) {
+		max-width: 100%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+}
+
+.input {
+	@apply block placeholder:text-[#959595] w-full outline-none border border-[#484848] transition-colors
+	  duration-100 hover:border-[#7b7b7b] px-2 md:px-3 py-1.5 md:py-2.5 rounded-md text-sm md:text-base;
+
+	&:focus {
+		border-color: #b5b5b5;
+	}
+
+	-moz-appearance: textfield;
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0) inset;
+		-webkit-text-fill-color: #ededed;
+		transition: background-color 5000s ease-in-out 0s;
+	}
+}

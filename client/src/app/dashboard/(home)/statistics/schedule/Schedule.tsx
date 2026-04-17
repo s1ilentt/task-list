@@ -12,131 +12,149 @@ import {
 	Dot,
 } from 'recharts';
 import styles from './Schedule.module.scss';
-import { useScheduleStatistics } from '@/hooks/statistic/useScheduleStatistics';
-import { EScheduleType } from '@/types/statistic.interfaces';
-import { useState } from 'react';
+import {
+	EScheduleType,
+	IStatisticSchedule,
+} from '@/types/statistic.interfaces';
+import { Dispatch, memo, SetStateAction } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
-export function Schedule() {
-	const [typeSchedule, setTypeSchedule] = useState(EScheduleType.Week);
+interface ISchedule {
+	data: IStatisticSchedule[];
+	currentTypeSchedule: EScheduleType;
+	setTypeSchedule: Dispatch<SetStateAction<EScheduleType>>;
+}
 
-	const { data, isLoading } = useScheduleStatistics(typeSchedule);
+export const Schedule = memo(
+	({ data, setTypeSchedule, currentTypeSchedule }: ISchedule) => {
+		const firstDate = data && data.length > 0 ? data[0].date : undefined;
+		const isDesktop = useMediaQuery({ minWidth: 1280 });
+		const isMobile = useMediaQuery({ maxWidth: 767 });
 
-	const firstDate = data && data.length > 0 ? data[0].date : undefined;
-
-	if (!data && isLoading) {
-		return <div>Loading...</div>;
-	}
-
-	return data ? (
-		<div className={styles['schedule-container']}>
-			<div className={styles.header}>
-				<h2>Comparison Chart of Completed Tasks</h2>
-				<div className={styles.buttons}>
-					<button
-						onClick={() => setTypeSchedule(EScheduleType.Week)}
-						disabled={EScheduleType.Week === typeSchedule}
-						className={styles.button}
+		return (
+			<div className={styles['schedule-container']}>
+				<div className={styles.header}>
+					<h2>Comparison Chart of Completed Tasks</h2>
+					<div className={styles.buttons}>
+						<button
+							onClick={() => setTypeSchedule(EScheduleType.Week)}
+							disabled={EScheduleType.Week === currentTypeSchedule}
+							className={styles.button}
+						>
+							Week
+						</button>
+						<button
+							onClick={() => setTypeSchedule(EScheduleType.Month)}
+							disabled={EScheduleType.Month === currentTypeSchedule}
+							className={styles.button}
+						>
+							Month
+						</button>
+						<button
+							onClick={() => setTypeSchedule(EScheduleType.Year)}
+							disabled={EScheduleType.Year === currentTypeSchedule}
+							className={styles.button}
+						>
+							Year
+						</button>
+					</div>
+				</div>
+				<div className={styles['schedule-wrapper']}>
+					<ResponsiveContainer
+						width='100%'
+						height={isMobile ? 240 : isDesktop ? 400 : 280}
 					>
-						Week
-					</button>
-					<button
-						onClick={() => setTypeSchedule(EScheduleType.Month)}
-						disabled={EScheduleType.Month === typeSchedule}
-						className={styles.button}
-					>
-						Month
-					</button>
-					<button
-						onClick={() => setTypeSchedule(EScheduleType.Year)}
-						disabled={EScheduleType.Year === typeSchedule}
-						className={styles.button}
-					>
-						Year
-					</button>
+						<LineChart
+							data={data}
+							margin={{
+								top: 20,
+								right: isDesktop ? 20 : 8,
+								left: isDesktop ? -30 : -38,
+								bottom: isDesktop ? 10 : 0,
+							}}
+						>
+							{firstDate && (
+								<ReferenceLine
+									x={firstDate}
+									stroke='rgba(87, 87, 87, 0.8)'
+									strokeWidth={isDesktop ? 2 : 1}
+								/>
+							)}
+							<CartesianGrid vertical={false} />
+							<XAxis
+								dataKey='date'
+								axisLine={false}
+								tickLine={false}
+								padding={{ left: isDesktop ? 30 : 20 }}
+								dy={10}
+								style={{
+									fontSize: isMobile ? '9px' : isDesktop ? '12px' : '10px',
+									fontWeight: 500,
+								}}
+								interval='preserveStartEnd'
+								minTickGap={isMobile ? 15 : isDesktop ? 40 : 25}
+							/>
+							<YAxis
+								axisLine={false}
+								tickLine={false}
+								dy={-10}
+								allowDecimals={false}
+							/>
+							<Tooltip
+								contentStyle={{
+									backgroundColor: 'rgb(50, 50, 50)',
+									border: 'none',
+									borderRadius: isDesktop ? '8px' : '5px',
+									color: '#fff',
+									fontSize: isDesktop ? '16px' : '13px',
+									padding: isDesktop ? '10px' : '6px',
+									lineHeight: isDesktop ? '24px' : '18px',
+								}}
+								formatter={(value: any) => [value, 'Tasks completed']}
+								itemStyle={{ color: '#fff' }}
+							/>
+							<Line
+								type='monotone'
+								dataKey='completed'
+								stroke='#4e75bb'
+								strokeWidth={isDesktop ? 5 : 3}
+								dot={
+									currentTypeSchedule === EScheduleType.Month
+										? (props: any) => {
+												const { index } = props;
+												if (index % 4 === 0) {
+													return (
+														<Dot
+															{...props}
+															r={isMobile ? 6 : isDesktop ? 8 : 7}
+															fill='#cccccc'
+															strokeWidth={isDesktop ? 3 : 2}
+															stroke='#4e75bb'
+														/>
+													);
+												}
+												return null;
+											}
+										: {
+												r: isMobile ? 6 : isDesktop ? 8 : 7,
+												fill: '#cccccc',
+												strokeWidth: isDesktop ? 3 : 2,
+												stroke: '#4e75bb',
+											}
+								}
+								activeDot={{
+									r: isMobile ? 6 : isDesktop ? 8 : 7,
+									fill: '#4e75bb',
+									stroke: '#4e75bb',
+									strokeWidth: 2,
+								}}
+								className={styles.line_shadow}
+								animationDuration={1500}
+							/>
+						</LineChart>
+					</ResponsiveContainer>
 				</div>
 			</div>
-			<div className={styles['schedule-wrapper']}>
-				<ResponsiveContainer
-					width='100%'
-					height={400}
-				>
-					<LineChart
-						key={typeSchedule}
-						data={data}
-						margin={{ top: 20, right: 20, left: -30, bottom: 10 }}
-					>
-						{firstDate && (
-							<ReferenceLine
-								x={firstDate}
-								stroke='rgba(87, 87, 87, 0.8)'
-								strokeWidth={2}
-							/>
-						)}
-						<CartesianGrid vertical={false} />
-						<XAxis
-							dataKey='date'
-							axisLine={false}
-							tickLine={false}
-							padding={{ left: 30 }}
-							dy={10}
-							style={{ fontSize: '12px', fontWeight: 500 }}
-							interval='preserveStartEnd'
-							minTickGap={50}
-						/>
-						<YAxis
-							axisLine={false}
-							tickLine={false}
-							dy={-10}
-							allowDecimals={false}
-						/>
-						<Tooltip
-							contentStyle={{
-								backgroundColor: 'rgb(50, 50, 50)',
-								border: 'none',
-								borderRadius: '8px',
-								color: '#fff',
-							}}
-							formatter={(value: any) => [value, 'Tasks completed']}
-							itemStyle={{ color: '#fff' }}
-						/>
-						<Line
-							type='monotone'
-							dataKey='completed'
-							stroke='#4e75bb'
-							strokeWidth={5}
-							dot={
-								typeSchedule === EScheduleType.Month
-									? (props: any) => {
-											const { index } = props;
-											if (index % 4 === 0) {
-												return (
-													<Dot
-														{...props}
-														r={8}
-														fill='#cccccc'
-														strokeWidth={3}
-														stroke='#4e75bb'
-													/>
-												);
-											}
-											return null;
-										}
-									: { r: 8, fill: '#cccccc', strokeWidth: 3, stroke: '#4e75bb' }
-							}
-							activeDot={{
-								r: 8,
-								fill: '#4e75bb',
-								stroke: '#4e75bb',
-								strokeWidth: 2,
-							}}
-							className={styles.line_shadow}
-							animationDuration={1500}
-						/>
-					</LineChart>
-				</ResponsiveContainer>
-			</div>
-		</div>
-	) : (
-		<h2 className={styles['heading-error']}>Statistics chart not found</h2>
-	);
-}
+		);
+	},
+);

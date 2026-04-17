@@ -1,0 +1,85 @@
+@reference '../../../app/globals.css';
+
+.picker-button {
+	@apply flex w-full h-full items-center cursor-pointer text-[13px] md:text-base;
+
+	&:hover span {
+		opacity: 0.6;
+	}
+
+	&_canban {
+		@apply inline-flex w-fit text-sm;
+	}
+
+	@media (max-width: 767.98px) {
+		& span {
+			display: inline-block;
+			max-width: 85px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+
+		&_canban span {
+			max-width: 100%;
+		}
+	}
+}
+
+.day-picker-wrapper {
+	@apply absolute p-2.5 top-[calc(100%+.3rem)] md:top-[calc(100%+.7rem)] animate-slide bg-sidebar
+	  z-10 shadow rounded-lg;
+
+	:global(.rdp-root) {
+		--rdp-cell-size: 32px;
+		--rdp-caption-font-size: 17px;
+		--rdp-accent-color: #7551ff;
+		--rdp-selected-border: none;
+
+		margin: 0.25rem;
+		font-size: 85%;
+	}
+
+	:global(.rdp-selected) {
+		font-size: inherit;
+	}
+
+	:global(.rdp-dropdown_root) {
+		cursor: pointer;
+	}
+
+	:global(.rdp-dropdown) {
+		background-color: #414141;
+		padding: 10px;
+		font-size: 14px;
+	}
+
+	:global([aria-label*='selected']) {
+		position: relative;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 75%;
+			height: 75%;
+			border: 1px solid #7551ff;
+			border-radius: 50%;
+		}
+	}
+
+	&_kanban {
+		@apply top-[calc(100%+.2rem)];
+	}
+
+	@media (max-width: 767.98px) {
+		:global(.rdp-day_button),
+		:global(.rdp-day) {
+			height: 32px;
+			width: 32px;
+		}
+	}
+}
