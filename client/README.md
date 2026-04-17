@@ -85,7 +85,7 @@ npm run dev
 
 The application will be available at url: http://localhost:3000
 
-**Сборка для продакшена:**
+**Build for production:**
 
 ```bash
 npm run build
