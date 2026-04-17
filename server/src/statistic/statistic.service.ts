@@ -4,9 +4,11 @@ import {
 	eachDayOfInterval,
 	eachMonthOfInterval,
 	endOfWeek,
+	endOfYear,
 	format,
 	startOfDay,
 	startOfWeek,
+	startOfYear,
 } from 'date-fns';
 import { PrismaService } from 'src/prisma.service';
 import { EScheduleType } from './schedule.enum';
@@ -25,9 +27,10 @@ export class StatisticService {
 		const todayEnd = addDays(todayStart, 1);
 		const weekStart = startOfWeek(now, { weekStartsOn: 1 });
 		const weekEnd = endOfWeek(now, { weekStartsOn: 1 });
+		const yearStart = startOfYear(now);
+		const yearEnd = endOfYear(now);
 
-		const [totalTasks, completedTasks, todayStats, weekStats, todaySession] = await Promise.all([
-			this.prisma.task.count({ where: { userId } }),
+		const [completedTasks, todayStats, weekStats, yearStats, todaySession] = await Promise.all([
 			this.prisma.task.count({ where: { userId, isCompleted: true } }),
 
 			this.prisma.task.groupBy({
@@ -42,6 +45,12 @@ export class StatisticService {
 				_count: true,
 			}),
 
+			this.prisma.task.groupBy({
+				by: ['isCompleted'],
+				where: { userId, dueDate: { gte: yearStart, lte: yearEnd } },
+				_count: true,
+			}),
+
 			this.timerService.getTodaySession(userId),
 		]);
 
@@ -52,6 +61,7 @@ export class StatisticService {
 
 		const today = getCounts(todayStats);
 		const week = getCounts(weekStats);
+		const year = getCounts(yearStats);
 
 		const totalRounds = todaySession?.rounds.length || 0;
 		const completedRounds = todaySession?.rounds.filter(r => r.isCompleted).length || 0;
@@ -76,14 +86,21 @@ export class StatisticService {
 					],
 				},
 				{
-					label: 'Pomodoro rounds today',
+					label: 'Year tasks',
+					value: [
+						{ label: 'Total', value: year.total },
+						{ label: 'Completed', value: year.completed },
+						{ label: 'Remaining', value: Math.max(0, year.total - year.completed) },
+					],
+				},
+				{
+					label: 'Pomodoro rounds',
 					value: [
 						{ label: 'Total', value: totalRounds },
 						{ label: 'Completed', value: completedRounds },
 						{ label: 'Remaining', value: Math.max(0, totalRounds - completedRounds) },
 					],
 				},
-				{ label: 'Total', value: totalTasks },
 				{ label: 'Completed tasks', value: completedTasks },
 				{ label: 'Work time today', value: Math.floor(totalSecondsSpent / 60) },
 			],

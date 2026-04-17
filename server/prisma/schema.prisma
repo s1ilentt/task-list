@@ -93,5 +93,5 @@ model PomodoroRound {
 enum Priority {
 	low
 	medium
-	hight
+	high
 }
