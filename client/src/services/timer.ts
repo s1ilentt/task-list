@@ -8,9 +8,9 @@ import {
 class TimerService {
 	private baseUrl = 'user/timer';
 
-	async getTodaySesstion() {
-		const response = await apiAuth.get<ITimerSession>(`${this.baseUrl}/today`);
-		return response;
+	async getTodaySession() {
+		const { data } = await apiAuth.get<ITimerSession>(`${this.baseUrl}/today`);
+		return data;
 	}
 
 	async createSession() {

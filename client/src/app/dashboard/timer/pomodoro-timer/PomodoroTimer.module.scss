@@ -1,0 +1,5 @@
+@reference '../../../globals.css';
+
+.wrapper {
+	@apply flex-1 flex flex-col gap-y-12 md:gap-y-16 items-center justify-center pt-2;
+}

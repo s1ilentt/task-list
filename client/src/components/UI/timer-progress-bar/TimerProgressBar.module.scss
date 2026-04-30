@@ -1,0 +1,21 @@
+@reference '../../../app/globals.css';
+
+.wrapper {
+	@apply relative;
+}
+
+.circle {
+	@apply origin-center -rotate-90 stroke-[#4772fa];
+
+	transition: stroke-dashoffset 0.3s ease;
+	stroke-linecap: round;
+}
+
+.text {
+	@apply text-[32px] fill-white tracking-wide md:text-5xl;
+}
+
+.display-state-timer {
+	@apply absolute md:bottom-[36%] left-0 md:px-15 w-full text-center md:text-xl 
+	 text-[rgba(255,255,255,0.6)] text-[17px] bottom-[35%] px-10;
+}

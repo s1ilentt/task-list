@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 
 export function useUpdateProfile() {
 	const queryClient = useQueryClient();
+
 	const { mutate: updateProfile, isPending: isUpdating } = useMutation({
 		mutationKey: ['update-profile'],
 		mutationFn: (formData: TUserForm) => userService.update(formData),

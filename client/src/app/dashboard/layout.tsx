@@ -2,6 +2,7 @@ import { MobileMenu } from '@/components/mobile-menu/MobileMenu';
 import { Sidebar } from '@/components/sidebar/Sidebar';
 import { MenuProvider } from '@/providers/MenuProvider';
 import { TaskAddProvider } from '@/providers/TaskAddProvider';
+import { TimerProvider } from '@/providers/TimerProvider';
 
 export default function DashboardLayout({
 	children,
@@ -11,14 +12,16 @@ export default function DashboardLayout({
 	return (
 		<TaskAddProvider>
 			<MenuProvider>
-				<Sidebar />
-				<MobileMenu />
-				<main
-					className='pt-1 px-3 min-[768px]:px-5 min-[768px]:pt-3 min-[1024px]:pl-62.5 
-					  min-[1024px]:pr-7.5 min-[1700px]:pl-77.5'
-				>
-					{children}
-				</main>
+				<TimerProvider>
+					<Sidebar />
+					<MobileMenu />
+					<main
+						className='pt-1 px-3 min-[768px]:px-5 min-[768px]:pt-3 min-[1024px]:pl-62.5 
+						  min-[1024px]:pr-7.5 min-[1700px]:pl-77.5'
+					>
+						{children}
+					</main>
+				</TimerProvider>
 			</MenuProvider>
 		</TaskAddProvider>
 	);

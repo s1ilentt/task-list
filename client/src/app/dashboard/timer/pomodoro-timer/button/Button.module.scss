@@ -1,0 +1,15 @@
+@reference '../../../../globals.css';
+
+.button {
+	@apply flex justify-center items-center md:w-40 cursor-pointer px-2 md:py-2 font-semibold 
+	  tracking-wide rounded-4xl border border-[#4772fa] transition-opacity hover:opacity-75 w-35
+		py-1.5 text-[15px] md:text-base;
+
+	box-shadow:
+		0 0 8px rgba(71, 114, 250, 0.15),
+		0 0 15px rgba(71, 114, 250, 0.05);
+}
+
+.filled {
+	@apply bg-[#4772fa] hover:opacity-80;
+}
