@@ -9,7 +9,6 @@ class StatisticService {
 	private baseUrl = 'user/statistic';
 
 	async getAllStatistics() {
-		await new Promise(resolve => setTimeout(resolve, 3000));
 		const { data } = await apiAuth.get<IStatisticAll>(this.baseUrl);
 		return data;
 	}
