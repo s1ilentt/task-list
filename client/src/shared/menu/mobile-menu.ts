@@ -15,10 +15,6 @@ export const MOBILE_MENU: IMenuItem[] = [
 		name: 'Pomodoro',
 	},
 	{
-		href: DASHBOARD_PAGES.TIME_BLOCKING,
-		name: 'Time Blocking',
-	},
-	{
 		href: DASHBOARD_PAGES.SETTINGS,
 		name: 'Settings',
 	},

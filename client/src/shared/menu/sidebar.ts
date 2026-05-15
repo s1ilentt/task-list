@@ -25,11 +25,6 @@ export const SIDEBAR_MENU: IMenuItem[] = [
 		icon: AlarmClock,
 	},
 	{
-		href: DASHBOARD_PAGES.TIME_BLOCKING,
-		name: 'Time Blocking',
-		icon: TableProperties,
-	},
-	{
 		href: DASHBOARD_PAGES.SETTINGS,
 		name: 'Settings',
 		icon: Settings,
